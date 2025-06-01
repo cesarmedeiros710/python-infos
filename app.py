@@ -1,9 +1,25 @@
 import os
+import google.generativeai as genai
 import csv
 from flask import Flask, render_template, url_for, request, redirect, flash
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
+
+genai.configure(api_key="AIzaSyCiCstFGWXynLSzUIRFKGP38eTOVGNRRcw")  
+
+@app.route('/gemini', methods=['GET', 'POST'])
+def gemini_chat():
+    if request.method == 'POST':
+        user_input = request.form.get('pergunta')
+        
+        model = genai.GenerativeModel('gemini-1.5-pro')
+        
+        response = model.generate_content(user_input)
+        
+        return render_template('gemini.html', resposta=response.text)
+    
+    return render_template('gemini.html')
 
 GLOSSARIO_FILE = 'bd_glossario.csv'
 

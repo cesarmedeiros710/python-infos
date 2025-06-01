@@ -1,0 +1,25 @@
+{% extends "modelo.html" %}
+{% block conteudo %}
+<div class="container mt-4">
+    <h2>Chat com Gemini AI</h2>
+    
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Faça uma pergunta:</label>
+            <input type="text" name="pergunta" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    {% if resposta %}
+    <div class="card mt-4">
+        <div class="card-header bg-dark text-white">
+            Resposta do Gemini:
+        </div>
+        <div class="card-body">
+            {{ resposta | safe }}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
