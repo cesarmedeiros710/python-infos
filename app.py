@@ -6,35 +6,49 @@ from flask import Flask, render_template, url_for, request, redirect, flash
 app = Flask(__name__)
 app.secret_key = 'secret_key'
 
-genai.configure(api_key="AIzaSyCiCstFGWXynLSzUIRFKGP38eTOVGNRRcw")  
+try:
+    api_key = os.environ.get("GEMINI_API_KEY") or "AIzaSyAMq_YsEXTTFNnltJAfViUDnJIhb5TDeuE"  
+    if not api_key or api_key.startswith("AIzaSy"):
+        raise ValueError("API Key inválida ou não configurada.")
+    
+    genai.configure(api_key=api_key)
+    print(" API Gemini configurada com sucesso!")
+except Exception as e:
+    print(f" Erro na configuração do Gemini: {e}")
+    print("Funcionalidade do Gemini estará desativada.")
 
 @app.route('/gemini', methods=['GET', 'POST'])
 def gemini_chat():
-    if request.method == 'POST':
-        user_input = request.form.get('pergunta')
-        
-        model = genai.GenerativeModel('gemini-1.5-pro')
-        
-        response = model.generate_content(user_input)
-        
-        return render_template('gemini.html', resposta=response.text)
-    
-    return render_template('gemini.html')
+    if 'google.generativeai' not in globals():
+        return render_template('gemini.html', 
+             resposta="Gemini não está disponível (API não configurada).",
+                pergunta_anterior="")
 
 GLOSSARIO_FILE = 'bd_glossario.csv'
 
 def carregar_glossario():
     glossario = []
     if os.path.exists(GLOSSARIO_FILE):
-        with open(GLOSSARIO_FILE, 'r', newline='', encoding='utf-8') as arquivo:
-            reader = csv.reader(arquivo, delimiter=';')
-            glossario = list(reader)
+        try:
+            with open(GLOSSARIO_FILE, 'r', newline='', encoding='utf-8') as arquivo:
+                reader = csv.reader(arquivo, delimiter=';')
+                next(reader, None) 
+                for row in reader:
+                    if len(row) == 2: 
+                        glossario.append(row)
+        except Exception as e:
+            flash('Erro ao carregar o glossário.', 'error')
     return glossario
 
 def salvar_glossario(glossario):
-    with open(GLOSSARIO_FILE, 'w', newline='', encoding='utf-8') as arquivo:
-        writer = csv.writer(arquivo, delimiter=';')
-        writer.writerows(glossario)
+    try:
+        with open(GLOSSARIO_FILE, 'w', newline='', encoding='utf-8') as arquivo:
+            writer = csv.writer(arquivo, delimiter=';')
+            
+            (["Termo", "Definicao"]) 
+            writer.writerows(glossario)
+    except Exception as e:
+        flash('Erro ao salvar o glossário.', 'error')
 
 @app.route('/')
 def ola():

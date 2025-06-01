@@ -1,22 +1,22 @@
 {% extends "modelo.html" %}
 {% block conteudo %}
-<div class="container mt-4">
-    <h2>Chat com Gemini AI</h2>
+<div class="container mt-4 content-below-navbar"> 
+    <h2><i class="bi bi-robot"></i> Pergunte ao Gemini AI</h2>
+    <hr>
     
-    <form method="POST">
+    <form method="POST" action="{{ url_for('gemini_chat') }}"> 
         <div class="mb-3">
-            <label class="form-label">Faça uma pergunta:</label>
-            <input type="text" name="pergunta" class="form-control" required>
+            <label for="perguntaInput" class="form-label">Faça uma pergunta:</label>
+            <textarea name="pergunta" id="perguntaInput" class="form-control" rows="4" required>{{ pergunta_anterior if pergunta_anterior }}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Enviar</button>
     </form>
 
     {% if resposta %}
     <div class="card mt-4">
-        <div class="card-header bg-dark text-white">
-            Resposta do Gemini:
+        <div class="card-header bg-primary text-white"> Resposta do Gemini:
         </div>
-        <div class="card-body">
+        <div class="card-body" style="white-space: pre-wrap;"> 
             {{ resposta | safe }}
         </div>
     </div>
