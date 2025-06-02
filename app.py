@@ -5,15 +5,18 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 
 app = Flask(__name__)
-app.secret_key = 'secret_key'
+app.secret_key = os.getenv('FLASK_SECRET_KEY', 'super secret key')
+
 load_dotenv()
+genai.configure(api_key="AIzaSyAAP5FeIuz8nXN8VJhe5GgvmozJFFpkDHs")
 
-api_key = os.getenv("GEMINI_API_KEY")
-
-if api_key:
-    genai.configure(api_key=api_key)
-else:
-    print(" AVISO: GEMINI_API_KEY não está definida no .env")
+def call_gemini_api(prompt):
+    try:
+        model = genai.GenerativeModel('gemini-2.0-flash')  
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Erro na API Gemini: {str(e)}"
 
 GLOSSARIO_FILE = 'bd_glossario.csv'
 
@@ -154,7 +157,7 @@ def gemini_chat():
     if request.method == 'POST':
         pergunta_anterior = request.form.get('pergunta')
         try:
-            model = genai.GenerativeModel('gemini-1.0-pro')
+            model = genai.GenerativeModel('gemini-2.0-flash')
             response = model.generate_content(pergunta_anterior)
             resposta = response.text
         except Exception as e:
