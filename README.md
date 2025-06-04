@@ -1,15 +1,89 @@
-O projeto tem como objetivo principal fornecer uma aplicação web simples, que permita aos usuários consultar definições de termos técnicos presentes em um glossário utilizando Python e o framework Flask.
+# 🌐 Projeto Flask com Integração API Gemini
 
-O repositório está organizado da seguinte maneira:
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![Flask](https://img.shields.io/badge/Flask-2.x-lightgrey?logo=flask)
+![Gemini API](https://img.shields.io/badge/Gemini-API-yellow?logo=google)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
 
-app.py: é o arquivo principal da aplicação Flask, responsável por configurar as rotas e renderizar os templates com os dados do glossário.
+Este é um projeto web desenvolvido com **Flask** que oferece seções educativas e interativas sobre Python, com glossário, conteúdo explicativo e integração com a **API Gemini** (Google AI) para respostas inteligentes.
 
-bd_glossario.csv: Arquivo CSV que serve como base de dados do glossário, contendo os termos e suas definições.
+---
 
-templates/: São os diretórios que contém os arquivos HTML utilizados para renderizar as páginas da aplicação.
+## 📁 Estrutura do Site
 
-__pycache__/: Diretório gerado automaticamente pelo Python para armazenar arquivos compilados.
+├── app.py # Código principal Flask
+├── bd_glossario.csv # Base de dados do glossário
+├── templates/
+│ ├── index.html # Página inicial
+│ ├── glossario.html # Lista de termos e significados
+│ ├── conteudo.html # Conteúdo educativo de Python
+│ └── quiz.html # (em desenvolvimento)
+├── .venv/ # Ambiente virtual
+├── .env # Variáveis de ambiente
 
-.venv/: Ambiente virtual do Python, utilizado para gerenciar as dependências do projeto.
 
-Foi utilizado no projeto: Python, framework Flask, HTML/CSS e csv
+---
+
+## 📚 Seções do Site
+
+- **Página Inicial (`/`)**: Apresentação do site.
+- **Glossário (`/glossario`)**: Lista de termos e significados sobre programação.
+- **Conteúdo (`/conteudo`)**: Explicações detalhadas sobre Python.
+- **Quiz (`/quiz`)**: Avaliação dos conhecimentos adquiridos.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **Python 3.10+**
+- **Flask** (framework web)
+- **Google Generative AI SDK** (`google.generativeai`)
+- **dotenv** para carregar variáveis de ambiente
+- **HTML + Bootstrap** para os templates
+
+---
+
+## 🤖 Integração com a API Gemini
+
+A integração está no arquivo `app.py`:
+
+```python
+genai.configure(api_key=os.getenv("API_KEY"))
+
+def call_gemini_api(prompt):
+    model = genai.GenerativeModel("gemini-2.0-flash")
+    response = model.generate_content(prompt)
+    return response.text
+```
+
+## 🧩 Principais Partes do Código
+app.py: Controla rotas e lógica principal.
+
+call_gemini_api(): Chama a API Gemini com um prompt.
+
+carregar_glossario(): Lê o CSV de termos.
+
+templates/: Contém páginas renderizadas com Flask (Jinja2).
+
+bd_glossario.csv: Base local de glossário (termo;significado).
+
+## 🚀 Como Executar
+Clone o repositório
+
+Configure o ambiente:
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+pip install -r requirements.txt
+```
+Crie um arquivo .env:
+```ini
+GENAI_API_KEY=sua_chave
+FLASK_SECRET_KEY=chave_secreta
+```
+
+Inicie o servidor:
+```bash
+flask run
