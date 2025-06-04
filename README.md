@@ -9,7 +9,7 @@ Este é um projeto web desenvolvido com **Flask** que oferece seções educativa
 
 ---
 
-## 📁 Estrutura do Site
+## 📁 Estrutura do Projeto
 
 python-infos/
 
@@ -32,12 +32,13 @@ python-infos/
   ├── glossario.html # Lista de termos
 
   ├── novo_termo.html # Formulário de adição
+  
   └── ... # Demais páginas
 
 
 ---
 
-## 📚 Seções do Site
+## 📚 Seções 
 
 - **Página Inicial (`/`)**: Apresentação do site.
 - **Glossário (`/glossario`)**: Lista de termos e significados sobre programação.
@@ -100,3 +101,9 @@ FLASK_SECRET_KEY=chave_secreta
 Inicie o servidor:
 ```bash
 flask run
+```
+## 👥 Colaboradores
+
+| [<img src="https://github.com/usuario1.png" width="50"/>](https://github.com/usuario1) | [<img src="https://github.com/usuario2.png" width="50"/>](https://github.com/usuario2) |
+|---|---|
+| [Paulo Cesar](https://github.com/cesarmedeiros710) | [Eduardo Cabral](https://github.com/duducabral) | [Vitor Rodrigo](https://github.com/vRodrigoDev) | [João Vitor](https://github.com/Joaovitorr777) |
