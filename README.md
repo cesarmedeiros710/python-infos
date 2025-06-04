@@ -11,15 +11,18 @@ Este é um projeto web desenvolvido com **Flask** que oferece seções educativa
 
 ## 📁 Estrutura do Site
 
-├── app.py # Código principal Flask
-├── bd_glossario.csv # Base de dados do glossário
-├── templates/
-│ ├── index.html # Página inicial
-│ ├── glossario.html # Lista de termos e significados
-│ ├── conteudo.html # Conteúdo educativo de Python
-│ └── quiz.html # (em desenvolvimento)
-├── .venv/ # Ambiente virtual
-├── .env # Variáveis de ambiente
+python-infos/
+├── app.py # Aplicação Flask principal
+├── requirements.txt # Dependências do projeto
+├── .env # Configurações sensíveis (não versionado)
+├── bd_glossario.csv # Banco de dados de termos
+└── templates/
+├── modelo.html # Layout base
+├── index.html # Página inicial
+├── gemini.html # Interface do assistente AI
+├── glossario.html # Lista de termos
+├── novo_termo.html # Formulário de adição
+└── ... # Demais páginas
 
 
 ---
