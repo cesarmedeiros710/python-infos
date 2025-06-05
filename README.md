@@ -102,8 +102,8 @@ Inicie o servidor:
 ```bash
 flask run
 ```
+
 ## 👥 Colaboradores
 
-| [<img src="https://github.com/usuario1.png" width="50"/>](https://github.com/usuario1) | [<img src="https://github.com/usuario2.png" width="50"/>](https://github.com/usuario2) |
-|---|---|
-| [Paulo Cesar](https://github.com/cesarmedeiros710) | [Eduardo Cabral](https://github.com/duducabral) | [Vitor Rodrigo](https://github.com/vRodrigoDev) | [João Vitor](https://github.com/Joaovitorr777) |
+[![Paulo Cesar](https://img.shields.io/badge/GitHub-cesarmedeiros710-blue?logo=github)](https://github.com/cesarmedeiros710)  [![Eduardo Cabral](https://img.shields.io/badge/GitHub-duducabral-blue?logo=github)](https://github.com/duducabral)  [![Vitor Rodrigo](https://img.shields.io/badge/GitHub-vRodrigoDev-blue?logo=github)](https://github.com/vRodrigoDev)  [![Joao Vitor](https://img.shields.io/badge/GitHub-Joaovitorr777-blue?logo=github)](https://github.com/Joaovitorr777)
+  
